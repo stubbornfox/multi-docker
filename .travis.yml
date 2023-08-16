@@ -14,3 +14,8 @@ after_success:
   - docker build -t stubbornfox/multi-nginx ./nginx
   - docker build -t stubbornfox/multi-server ./server
   - docker build -t stubbornfox/multi-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push stubbornfox/multi-client
+  - docker push stubbornfox/multi-nginx
+  - docker push stubbornfox/multi-server
+  - docker push stubbornfox/multi-worker
