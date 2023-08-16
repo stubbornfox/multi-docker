@@ -19,3 +19,15 @@ after_success:
   - docker push stubbornfox/multi-nginx
   - docker push stubbornfox/multi-server
   - docker push stubbornfox/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-1'
+  app: 'multi-docker'
+  env: 'Multi-docker-env'
+  bucket_name: 'elasticbeanstalk-us-east-1-088374349697'
+  bucket_path: 'multi-docker'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
